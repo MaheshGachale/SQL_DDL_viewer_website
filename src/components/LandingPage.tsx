@@ -17,7 +17,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             {/* Hero Section */}
             <section className="hero-section">
                 <div className="hero-content">
-                    <h1 className="hero-title">SQL DDL to Diagram</h1>
+                    <h1 className="hero-title">Online SQL DDL Viewer & Schema Visualizer</h1>
                     <p className="hero-subtitle">
                         The easiest way to visualize your SQL Database Schema online.
                         Transform your DDL statements into interactive Entity-Relationship diagrams in seconds.
