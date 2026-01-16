@@ -34,13 +34,7 @@ export default defineConfig({
     },
     // Increase chunk size warning limit (500kb)
     chunkSizeWarningLimit: 500,
-    // Minify for production
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true,
-      },
-    },
+    // Minify for production using esbuild (faster and built-in)
+    minify: 'esbuild',
   },
 })
