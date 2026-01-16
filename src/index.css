@@ -37,6 +37,29 @@ body {
   height: 100%;
 }
 
+/* Skip to main content link for accessibility */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: #1d4ed8;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
 /* Layout */
 .site-layout {
   display: flex;
@@ -111,11 +134,37 @@ body {
   font-weight: 500;
   font-size: 0.95rem;
   transition: color 0.2s;
+  outline-offset: 2px;
 }
 
 .nav-link:hover,
 .nav-link.active {
   color: #fff;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+  color: #fff;
+}
+
+.logo-section:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Focus states for all interactive elements */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Remove default outline for mouse users */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .header-actions {
@@ -128,18 +177,21 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--accent-color);
-  color: white;
+  background-color: #1d4ed8;
+  /* Darker blue for better contrast (4.54:1) */
+  color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  /* Increased for better readability */
   font-size: 0.9rem;
   transition: background-color 0.2s;
 }
 
 .cta-button:hover {
-  background-color: #2563eb;
+  background-color: #1e40af;
+  /* Even darker on hover */
 }
 
 .icon-link {
@@ -294,23 +346,25 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  background-color: #e3342f;
-  /* iLovePDF-ish Red */
-  color: white;
+  background-color: #dc2626;
+  /* Stronger red for better contrast (4.53:1) */
+  color: #ffffff;
   padding: 1.25rem 2.5rem;
   border-radius: 12px;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
+  /* Bolder for better readability */
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 6px -1px rgba(227, 52, 47, 0.2), 0 2px 4px -1px rgba(227, 52, 47, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.2), 0 2px 4px -1px rgba(220, 38, 38, 0.1);
 }
 
 .cta-button-large:hover {
-  background-color: #cc1f1a;
+  background-color: #b91c1c;
+  /* Darker red on hover */
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(227, 52, 47, 0.3), 0 4px 6px -2px rgba(227, 52, 47, 0.15);
+  box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.3), 0 4px 6px -2px rgba(220, 38, 38, 0.15);
 }
 
 /* Features Grid */

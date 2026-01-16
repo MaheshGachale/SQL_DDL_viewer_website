@@ -11,10 +11,18 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children, onNavigate, isTool = false }) => {
     return (
         <div className="site-layout">
+            {/* Skip to main content link for accessibility */}
+            <a href="#main-content" className="skip-link">Skip to main content</a>
+
             <Header onNavigate={onNavigate} />
-            <div className={`site-main-wrapper ${isTool ? 'layout-tool-mode' : ''}`}>
+            <main
+                id="main-content"
+                className={`site-main-wrapper ${isTool ? 'layout-tool-mode' : ''}`}
+                role="main"
+                aria-label="Main content"
+            >
                 {children}
-            </div>
+            </main>
             {!isTool && <Footer />}
         </div>
     );

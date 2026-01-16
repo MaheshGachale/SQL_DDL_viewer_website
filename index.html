@@ -4,8 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- DNS Prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+  <!-- Preconnect for faster external resource loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Async load Google Fonts (non-blocking) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"
     media="print" onload="this.media='all'">
   <noscript>
@@ -14,13 +23,17 @@
 
   <!-- Critical CSS for First Paint -->
   <style>
+    * {
+      box-sizing: border-box
+    }
+
     body {
       margin: 0;
       min-width: 320px;
       min-height: 100vh;
       background-color: #0f172a;
       font-family: 'Inter', system-ui, sans-serif;
-      color: rgba(255, 255, 255, 0.87)
+      color: rgba(255, 255, 255, .87)
     }
 
     #root {
@@ -34,22 +47,51 @@
       left: 0;
       right: 0;
       height: 70px;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, .8);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
       z-index: 1000
+    }
+
+    .site-layout {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh
+    }
+
+    .landing-page {
+      animation: fadeIn .4s ease-out
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
     }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-44E3EN6DZ9"></script>
+  <!-- Google tag (gtag.js) - Deferred for performance -->
   <script>
+    // Defer Google Analytics to not block rendering
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-44E3EN6DZ9');
+
+    // Load GA script after page load
+    window.addEventListener('load', function () {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-44E3EN6DZ9';
+      document.head.appendChild(script);
+    });
   </script>
 
   <!-- Primary Meta Tags -->
