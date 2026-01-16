@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+    --sidebar-width: 400px;
+    --bg-main: #0f172a;
+    --bg-sidebar: rgba(30, 41, 59, 0.7);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --accent-color: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.5);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.app-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    background: var(--bg-sidebar);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+}
+
+.sidebar.closed {
+    margin-left: calc(-1 * var(--sidebar-width));
+    transform: translateX(-20px);
+}
+
+.sidebar-header {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 20px;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-icon {
+    color: var(--accent-color);
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.editor-section {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.editor-wrapper {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: auto;
+}
+
+.sql-editor {
+    height: 100%;
+    min-height: 100%;
+}
+
+.visualize-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.visualize-button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.visualize-button:active {
+    transform: translateY(0);
+}
+
+.sidebar-footer {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sparkle {
+    color: #fbbf24;
+}
+
+/* Main Content Styling */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.view-header {
+    padding: 24px 40px;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), transparent);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.view-title h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.view-title p {
+    margin: 4px 0 0 0;
+    color: var(--text-secondary);
+}
+
+.diagram-container {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* React Flow Theming */
+.react-flow__node-table {
+    background: white;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    color: #1e293b;
+    font-family: 'Inter', sans-serif;
+    width: 240px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.table-node {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-header {
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--accent-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-columns {
+    padding: 8px 0;
+}
+
+.table-column {
+    padding: 4px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    position: relative;
+}
+
+.table-column:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.column-name {
+    color: #000000;
+    font-weight: 500;
+}
+
+.column-type {
+    color: #64748b;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: 'Fira Code', monospace;
+}
+
+/* Node States */
+.table-node.is-view .table-title {
+    color: #10b981;
+}
+
+.table-node.is-cte .table-title {
+    color: #8b5cf6;
+}
+
+.icon-pk {
+    color: #f59e0b;
+}
+
+.icon-fk {
+    color: #3b82f6;
+}
+
+.icon-gb {
+    color: #ec4899;
+}
+
+.icon-sk {
+    color: #10b981;
+}
+
+.icon-calc {
+    color: #f59e0b;
+}
+
+/* Control Buttons */
+.icon-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.icon-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.floating-toggle {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 20;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+/* React Flow Overrides */
+.react-flow__controls {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.react-flow__controls-button {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.react-flow__controls-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.react-flow__minimap {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+/* Download Button Styling */
+.download-panel {
+    margin: 15px;
+}
+
+.download-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1e293b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #3b82f6;
+    /* Prominent Blue Border */
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.download-button:hover {
+    background: #3b82f6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.download-button svg {
+    color: #3b82f6;
+    transition: color 0.2s;
+}
+
+.download-button:hover svg {
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        width: 100%;
+    }
+}

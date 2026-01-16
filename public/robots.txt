@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maheshgachale.github.io/SQL_DDL_Viewer/sitemap.xml
